@@ -1,11 +1,11 @@
 const User = require("../models/userModel");
 
 const register = async (req, res) => {
-  const { firstname, lastname, email, password, admin } = req.body;
-  const user = new User({ firstname, lastname, email, password, admin });
+  const data = { ...req.body };
+  const user = new User(data);
   try {
     await user.save();
-    res.send(`Hello ${firstname} Welcome to our house`);
+    res.send(`Hello ${data.firstname} Welcome to our house`);
   } catch (error) {
     res.send(error.message);
   }

@@ -21,7 +21,7 @@ const bookSchema = mongoose.Schema(
     copies: {
       type: Number,
       min: 1,
-      require: true,
+      required: true,
     },
   },
   {
