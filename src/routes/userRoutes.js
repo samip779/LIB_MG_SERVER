@@ -6,7 +6,7 @@ router.post("/register", async (req, res) => {
   const user = new User({ name, email, password });
   try {
     await user.save();
-    res.send("User registered");
+    res.send(`Hello ${name} Welcome to our house`);
   } catch (error) {
     res.send(error.message);
   }

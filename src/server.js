@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("api is running");
+  res.send("akkal raheet");
 });
 
 app.use("/api/users", userRoutes);
