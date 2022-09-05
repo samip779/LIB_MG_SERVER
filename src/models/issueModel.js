@@ -8,7 +8,7 @@ const issueSchema = mongoose.Schema(
       required: true,
     },
     book: {
-      type: mongoose.schema.Types.ObjectID,
+      type: mongoose.Schema.Types.ObjectID,
       ref: "Book",
       required: true,
     },

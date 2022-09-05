@@ -14,7 +14,7 @@ const bookSchema = mongoose.Schema(
       default: ".........Not Available.........",
     },
     isbn: {
-      type: string,
+      type: String,
       required: true,
       unique: true,
     },

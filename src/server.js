@@ -2,10 +2,14 @@ const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 
+// Loading Routers
 const userRoutes = require("./routes/userRoutes");
+const bookRoutes = require("./routes/bookRoutes");
+const issueRoutes = require("./routes/issueRoutes");
 
 dotenv.config();
 
+// Connectint to database
 connectDB();
 
 const app = express();
@@ -16,11 +20,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send("akkal raheet");
-});
-
+// Use Routes
 app.use("/api/users", userRoutes);
+app.use("/api/books", bookRoutes);
+app.use("/api/issue", issueRoutes);
 
 const PORT = process.env.PORT || 5000;
 
