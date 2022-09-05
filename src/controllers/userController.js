@@ -11,6 +11,18 @@ const register = async (req, res) => {
   }
 };
 
+const listUsers = async (req, res) => {
+  const users = await User.find();
+  res.json(users);
+};
+
+const listUser = async (req, res) => {
+  const user = await User.findById(req.params.id);
+  res.json(user);
+};
+
 module.exports = {
   register,
+  listUsers,
+  listUser,
 };
