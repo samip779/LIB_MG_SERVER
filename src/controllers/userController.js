@@ -1,4 +1,4 @@
-const User = require("../models/userModel");
+import User from "../models/userModel.js";
 
 const register = async (req, res) => {
   const data = { ...req.body };
@@ -21,8 +21,4 @@ const listUser = async (req, res) => {
   res.json(user);
 };
 
-module.exports = {
-  register,
-  listUsers,
-  listUser,
-};
+export { register, listUsers, listUser };

@@ -1,6 +1,8 @@
-const router = require("express").Router();
-const { issueBook } = require("../controllers/issueController");
+import express from "express";
+import { issueBook } from "../controllers/issueController.js";
+
+const router = express.Router();
 
 router.post("/", issueBook);
 
-module.exports = router;
+export default router;

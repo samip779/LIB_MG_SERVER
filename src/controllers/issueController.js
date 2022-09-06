@@ -1,6 +1,6 @@
-const Issue = require("../models/issueModel");
-const Book = require("../models/bookModel");
-const User = require("../models/userModel");
+import Issue from "../models/issueModel.js";
+import Book from "../models/bookModel.js";
+import User from "../models/userModel.js";
 
 const issueBook = async (req, res) => {
   const data = { ...req.body };
@@ -16,6 +16,4 @@ const issueBook = async (req, res) => {
   }
 };
 
-module.exports = {
-  issueBook,
-};
+export { issueBook };

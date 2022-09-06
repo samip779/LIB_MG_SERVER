@@ -1,5 +1,6 @@
 {
   "name": "lib_mg_server",
+  "type": "module",
   "version": "1.0.0",
   "description": "Library Management api using node js and express framework",
   "main": "server.js",

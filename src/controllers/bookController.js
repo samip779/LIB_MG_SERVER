@@ -1,4 +1,4 @@
-const Book = require("../models/bookModel");
+import Book from "../models/bookModel.js";
 
 const listBooks = async (req, res) => {
   const books = await Book.find();
@@ -17,7 +17,4 @@ const addBook = async (req, res) => {
   }
 };
 
-module.exports = {
-  listBooks,
-  addBook,
-};
+export { listBooks, addBook };

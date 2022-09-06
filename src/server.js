@@ -1,11 +1,11 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const connectDB = require("./config/db");
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
 
 // Loading Routers
-const userRoutes = require("./routes/userRoutes");
-const bookRoutes = require("./routes/bookRoutes");
-const issueRoutes = require("./routes/issueRoutes");
+import userRoutes from "./routes/userRoutes.js";
+import bookRoutes from "./routes/bookRoutes.js";
+import issueRoutes from "./routes/issueRoutes.js";
 
 dotenv.config();
 
