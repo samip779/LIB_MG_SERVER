@@ -1,29 +1,41 @@
 import User from "../models/userModel.js";
 
-const register = async (req, res) => {
+// Register function
+
+const register = async (req, res, next) => {
   const data = { ...req.body };
-  const user = new User(data);
-  try {
-    await user.save();
-    res.send(`Hello ${data.firstname} Welcome to our house`);
-  } catch (error) {
-    res.send(error.message);
+  const { email } = req.body;
+
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    res.status(400);
+    next(new Error("User already exists"));
+    return;
   }
+  const user = await User.create(data);
+  if (user) {
+    return res.status(201).json(user);
+  }
+  res.status(400);
+  next(new Error("Invalid user data"));
 };
+
+// List Users
 
 const listUsers = async (req, res) => {
   const users = await User.find();
   res.json(users);
 };
 
+// List single user
+
 const listUser = async (req, res, next) => {
   const user = await User.findById(req.params.id);
   if (user) {
-    res.json(user);
-  } else {
-    res.status(404);
-    next(new Error("User doesnot exit"));
+    return res.json(user);
   }
+  res.status(404);
+  next(new Error("User doesnot exit"));
 };
 
 export { register, listUsers, listUser };
