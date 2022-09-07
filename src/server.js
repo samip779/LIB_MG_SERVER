@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 
+// Loading Error Handlers middlewares
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 
 // Loading Routers
@@ -16,8 +17,6 @@ connectDB();
 
 const app = express();
 app.use(express.json());
-app.use(notFound);
-app.use(errorHandler);
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
@@ -28,6 +27,10 @@ app.use((req, res, next) => {
 app.use("/api/users", userRoutes);
 app.use("/api/books", bookRoutes);
 app.use("/api/issue", issueRoutes);
+
+// Error Middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

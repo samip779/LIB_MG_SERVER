@@ -16,9 +16,14 @@ const listUsers = async (req, res) => {
   res.json(users);
 };
 
-const listUser = async (req, res) => {
+const listUser = async (req, res, next) => {
   const user = await User.findById(req.params.id);
-  res.json(user);
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    next(new Error("User doesnot exit"));
+  }
 };
 
 export { register, listUsers, listUser };
