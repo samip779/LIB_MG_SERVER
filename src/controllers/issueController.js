@@ -12,7 +12,8 @@ const issueBook = async (req, res) => {
     const book = await Book.findById(data.book);
     res.send(`${user.email} has borrowed ${book.name}`);
   } catch (error) {
-    res.send(error.message);
+    res.status(500);
+    throw new Error("Something went wrong");
   }
 };
 

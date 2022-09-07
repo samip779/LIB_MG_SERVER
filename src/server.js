@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 
+import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
+
 // Loading Routers
 import userRoutes from "./routes/userRoutes.js";
 import bookRoutes from "./routes/bookRoutes.js";
@@ -14,6 +16,8 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(notFound);
+app.use(errorHandler);
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
