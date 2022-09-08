@@ -2,7 +2,7 @@ import Issue from "../models/issueModel.js";
 import Book from "../models/bookModel.js";
 import User from "../models/userModel.js";
 
-const issueBook = async (req, res, next) => {
+const issueBook = async (req, res) => {
   try {
     const data = { ...req.body };
     const issue = new Issue(data);
@@ -12,7 +12,7 @@ const issueBook = async (req, res, next) => {
     res.send(`${user.email} has borrowed ${book.name}`);
   } catch (error) {
     res.status(500);
-    next(error);
+    throw error;
   }
 };
 
