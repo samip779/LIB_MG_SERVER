@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import "express-async-errors";
 
 // Loading Error Handlers middlewares
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
@@ -30,7 +31,7 @@ app.use("/api/issue", issueRoutes);
 
 // Error Middlewares
 app.use(notFound);
-app.use(errorHandler);
+app.use("*", errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
