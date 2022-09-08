@@ -1,19 +1,22 @@
 import Book from "../models/bookModel.js";
 
-const listBooks = async (req, res) => {
-  const books = await Book.find();
-  res.json(books);
+const listBooks = async (req, res, next) => {
+  try {
+    const books = await Book.find();
+    res.json(books);
+  } catch (error) {
+    next(err);
+  }
 };
 
-const addBook = async (req, res) => {
-  const data = { ...req.body };
-  const book = new Book(data);
+const addBook = async (req, res, next) => {
   try {
+    const data = { ...req.body };
+    const book = new Book(data);
     await book.save();
-
-    res.send("Your book is added");
+    res.send(book);
   } catch (error) {
-    res.send(error.message);
+    next(error);
   }
 };
 
