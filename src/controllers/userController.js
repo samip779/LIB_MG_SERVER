@@ -1,7 +1,6 @@
 import User from "../models/userModel.js";
 
 // Register function
-
 const register = async (req, res, next) => {
   const data = { ...req.body };
   const { email } = req.body;
@@ -21,21 +20,37 @@ const register = async (req, res, next) => {
 };
 
 // List Users
-
 const listUsers = async (req, res) => {
   const users = await User.find();
   res.json(users);
 };
 
-// List single user
+// @desc      Auth user and get token
+// @route     POST /api/users/login
+// @access    Public
+const authUser = async (req, res, next) => {
+  const { email, password } = req.body;
 
-const listUser = async (req, res, next) => {
-  const user = await User.findById(req.params.id);
-  if (user) {
-    return res.json(user);
+  if (!email || !password) {
+    res.status(400);
+    let error = new Error("Please provide email and password");
+    next(error);
+    return;
   }
-  res.status(404);
-  next(new Error("User doesnot exit"));
+  const user = await User.findOne({ email });
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      admin: user.admin,
+      token: null,
+    });
+  } else {
+    res.status(401);
+    let error = new Error("Invalid email or password");
+    next(error);
+  }
 };
 
-export { register, listUsers, listUser };
+export { register, listUsers, authUser };
