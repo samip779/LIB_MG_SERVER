@@ -11,7 +11,6 @@ const issueBook = async (req, res) => {
     const book = await Book.findById(data.book);
     res.send(`${user.email} has borrowed ${book.name}`);
   } catch (error) {
-    res.status(500);
     throw error;
   }
 };

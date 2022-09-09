@@ -1,12 +1,13 @@
+import ApiError from "../errors/ApiError.js";
 import Book from "../models/bookModel.js";
 
 const listBooks = async (req, res) => {
-  try {
-    const books = await Book.find();
+  const books = await Book.find();
+  if (books) {
     res.json(books);
-  } catch (error) {
-    throw error;
+    return;
   }
+  throw ApiError.internal("Books couldn't be found");
 };
 
 const addBook = async (req, res) => {
