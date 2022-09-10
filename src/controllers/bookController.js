@@ -13,11 +13,8 @@ const listBooks = tryCatch(async (req, res) => {
 
 const addBook = tryCatch(async (req, res) => {
   const data = { ...req.body };
-  const book = Book.create(data);
-  if (book) {
-    return res.send(book);
-  }
-  throw ApiError("Please enter valid credentials");
+  const book = await Book.create(data);
+  return res.send(book);
 });
 
 export { listBooks, addBook };
