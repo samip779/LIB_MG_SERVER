@@ -1,10 +1,7 @@
 import ApiError from "../errors/ApiError.js";
 
 const notFound = (req, res, next) => {
-  const error = new Error(`Not Found - ${req.originalUrl}`);
-  error.name = "NOT_FOUND";
-  res.status(404);
-  throw error;
+  throw ApiError.notFound(`Not Found - ${req.originalUrl}`);
 };
 
 const errorHandler = (error, req, res, next) => {
