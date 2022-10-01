@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import "express-async-errors";
+import cors from "cors";
 
 // Loading Error Handlers middlewares
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
@@ -18,6 +19,7 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
