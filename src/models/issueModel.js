@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const issueSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectID,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
     book: {
       type: mongoose.Schema.Types.ObjectID,
-      ref: "Book",
+      ref: 'Book',
       required: true,
     },
     returned: {
@@ -20,8 +20,8 @@ const issueSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-);
+)
 
-const Issue = mongoose.model("Issue", issueSchema);
+const Issue = mongoose.model('Issue', issueSchema)
 
-export default Issue;
+export default Issue

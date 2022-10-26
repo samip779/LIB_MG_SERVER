@@ -1,18 +1,18 @@
-import Issue from "../models/issueModel.js";
-import Book from "../models/bookModel.js";
-import User from "../models/userModel.js";
+import Issue from '../models/issueModel.js'
+import Book from '../models/bookModel.js'
+import User from '../models/userModel.js'
 
 const issueBook = async (req, res) => {
   try {
-    const data = { ...req.body };
-    const issue = new Issue(data);
-    await issue.save();
-    const user = await User.findById(data.user);
-    const book = await Book.findById(data.book);
-    res.send(`${user.email} has borrowed ${book.name}`);
+    const data = { ...req.body }
+    const issue = new Issue(data)
+    await issue.save()
+    const user = await User.findById(data.user)
+    const book = await Book.findById(data.book)
+    res.send(`${user.email} has borrowed ${book.name}`)
   } catch (error) {
-    throw error;
+    throw error
   }
-};
+}
 
-export { issueBook };
+export { issueBook }

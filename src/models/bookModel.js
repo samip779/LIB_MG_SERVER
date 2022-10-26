@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const bookSchema = mongoose.Schema(
   {
@@ -11,7 +11,7 @@ const bookSchema = mongoose.Schema(
     },
     description: {
       type: String,
-      default: ".........Not Available.........",
+      default: '.........Not Available.........',
     },
     isbn: {
       type: String,
@@ -27,7 +27,7 @@ const bookSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-);
+)
 
-const Book = mongoose.model("Book", bookSchema);
-export default Book;
+const Book = mongoose.model('Book', bookSchema)
+export default Book
